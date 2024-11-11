@@ -4,14 +4,18 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 
-#Carga de variables de entorno en deployments en la nube
-#api_key= os.getenv("GCP_APY_KEY") 
-#base_url= os.getenv("GCP_BASE_URL")
+# Detecta si estamos en Streamlit Cloud o localmente
+env = os.getenv("GCP_ENV", "local")  # Default a "local" si no está definido
 
-# Carga las variables del archivo .env en deployments locales
-load_dotenv()
-api_key = os.getenv("API_KEY")
-base_url = os.getenv("BASE_URL")
+if env == "production":
+    #Carga de variables de entorno en deployments en la nube
+    api_key= os.getenv("GCP_APY_KEY") 
+    base_url= os.getenv("GCP_BASE_URL")
+else:
+    #Carga las variables del archivo .env en deployments locales
+    load_dotenv(.env)
+    api_key = os.getenv("API_KEY")
+    base_url = os.getenv("BASE_URL")
 
 # Show title and description.
 st.title("💬 Chatbot")
