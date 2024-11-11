@@ -1,9 +1,17 @@
 import os
 import streamlit as st
 from openai import OpenAI
+from dotenv import load_dotenv
 
 
-api_key= os.getenv("GCP_APY_KEY")
+#Carga de variables de entorno en deployments en la nube
+#api_key= os.getenv("GCP_APY_KEY") 
+#base_url= os.getenv("GCP_BASE_URL")
+
+# Carga las variables del archivo .env en deployments locales
+load_dotenv()
+api_key = os.getenv("API_KEY")
+base_url = os.getenv("BASE_URL")
 
 # Show title and description.
 st.title("💬 Chatbot")
@@ -11,17 +19,9 @@ st.write(
     "Este es un cliente ligero de chat con IA."
 )
 
-# Ask user for their OpenAI API key via `st.text_input`.
-# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
-# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-#openai_api_key = st.text_input("OpenAI API Key", type="password")
-#if not openai_api_key:
-#    st.info("Please add your OpenAI API key to continue.", icon="🗝️")
-#else:
-
 # Create an OpenAI client.
 client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
+    base_url=base_url,
     api_key=api_key
 )
 
