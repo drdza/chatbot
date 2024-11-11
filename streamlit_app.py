@@ -46,11 +46,14 @@ if prompt := st.chat_input("What is up?"):
 
     # Generate a response using the OpenAI API.
     stream = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="meta/llama-3.2-3b-instruct",
         messages=[
             {"role": m["role"], "content": m["content"]}
             for m in st.session_state.messages
         ],
+        temperature=0.2,
+        top_p=0.7,
+        max_tokens=1024,
         stream=True,
     )
 
