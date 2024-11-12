@@ -5,9 +5,7 @@ from dotenv import load_dotenv
 
 
 # Detecta si estamos en Streamlit Cloud o localmente
-env = os.getenv("GCP_ENV")  # Default a "local" si no está definido
-
-console(env)
+env = os.getenv("GCP_ENV", "local")  # Default a "local" si no está definido
 
 if env == "production":
     #Carga de variables de entorno en deployments en la nube
