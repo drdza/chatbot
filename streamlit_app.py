@@ -32,7 +32,7 @@ client = OpenAI(
 # Create a session state variable to store the chat messages. This ensures that the
 # messages persist across reruns.
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [{"role": "system", "content": "Eres un asistente de IA."}]
 
 # Display the existing chat messages via `st.chat_message`.
 for message in st.session_state.messages:
