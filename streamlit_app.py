@@ -13,7 +13,7 @@ if env == "prod":
     base_url= os.getenv("GCP_BASE_URL")
 else:
     #Carga las variables del archivo .env en deployments locales
-    load_dotenv(.env)
+    load_dotenv(".env")
     api_key = os.getenv("API_KEY")
     base_url = os.getenv("BASE_URL")
 
